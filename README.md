@@ -7,6 +7,11 @@ Default project stucture to build an application with:
 - PHPMyAdmin
 - MariaDB
 
+## Configuration
+
+Before using, copy and rename the file **.env-sample** to **.env** and setup all the variables on it to use on the **docker-compose.yml**.
+You can also change the versions of PHP, MariaDB and PHPMyAdmin on the **docker-compose.yml**.
+
 ## Build (first time only)
 
 ``` bash
