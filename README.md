@@ -35,3 +35,7 @@ You can also change the versions of PHP, MariaDB and PHPMyAdmin on the **docker-
 ``` bash
   docker system prune -a
 ```
+
+## Access Applcation
+
+[localhost](http://localhost)
