@@ -1,6 +1,6 @@
 version: '3'
 services:
-    vitaqualisis-php-apache:
+    container-php-apache:
         build:
             context: .docker/php/
             dockerfile: Dockerfile
@@ -11,7 +11,7 @@ services:
         links:
             - 'mariadb'
 
-    vitaqualisis-mariadb:
+    container-mariadb:
         image: mariadb:10.3.37
         ports:
           - 8080:80
@@ -24,10 +24,10 @@ services:
             MYSQL_PASSWORD: ${MARIADB_PASSWORD}
             MYSQL_DATABASE: ${MARIADB_DATABASE}
 
-    vitaqualisis-phpmyadmin:
+    container-phpmyadmin:
         image: corbinu/docker-phpmyadmin
         links:
-            - 'vitaqualisis-mariadb'
+            - 'container-mariadb'
         ports:
             - 8181:80
         environment:
