@@ -1,6 +1,7 @@
 version: '3'
 services:
-    container-php-apache:
+    php-apache:
+        container_name: ${PROJECT}_php_apache
         build:
             context: .docker/php/
             dockerfile: Dockerfile
@@ -9,9 +10,10 @@ services:
         volumes:
             - ${APPLICATION}:/var/www/html
         links:
-            - 'container-mariad'
+            - '${PROJECT}_mariadb'
 
-    container-mariadb:
+    mariadb:
+        container_name: ${PROJECT}_mariadb
         image: mariadb:10.3.37
         ports:
           - 8080:80
@@ -24,13 +26,14 @@ services:
             MYSQL_PASSWORD: ${MARIADB_PASSWORD}
             MYSQL_DATABASE: ${MARIADB_DATABASE}
 
-    container-phpmyadmin:
+    phpmyadmin:
+        container_name: ${PROJECT}_phpmyadmin
         image: corbinu/docker-phpmyadmin
         links:
-            - 'container-mariadb'
+            - '${PROJECT}_mariadb'
         ports:
             - 8181:80
         environment:
             MYSQL_USERNAME: ${MARIADB_USER}
             MYSQL_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
-            MYSQL_PORT_3306_TCP_ADDR: mariadb
+            MYSQL_PORT_3306_TCP_ADDR: ${PROJECT}_mariadb
