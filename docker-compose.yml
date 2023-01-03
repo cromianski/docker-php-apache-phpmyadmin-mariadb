@@ -9,7 +9,7 @@ services:
         volumes:
             - ${APPLICATION}:/var/www/html
         links:
-            - 'mariadb'
+            - 'container-mariad'
 
     container-mariadb:
         image: mariadb:10.3.37
